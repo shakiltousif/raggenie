@@ -19,7 +19,7 @@ services:
       context: ./ui
       dockerfile: Dockerfile
       args:
-        - BACKEND_URL=http://backend:8101 # Ensure the backend URL is correct
+        - BACKEND_URL=https://raggenie-api.doyelai.com # Ensure the backend URL is correct
     ports:
       - "8092:5000"
     volumes:

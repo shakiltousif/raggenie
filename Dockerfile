@@ -20,6 +20,13 @@ RUN pip install virtualenv && \
 # Stage 2: Deployer
 FROM python:3.11-slim AS deployer
 
+# Install system dependencies required for pyodbc and mariadb
+RUN apt-get update && apt-get install -y \
+        unixodbc-dev \
+        libmariadb3 \
+    && rm -rf /var/lib/apt/lists/*
+
+
 # Copy the virtual environment from the builder stage
 COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
